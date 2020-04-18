@@ -36,6 +36,8 @@ Cpair max(Cpair const &lhs, Cpair const &rhs);
 /// Find the number with the highest Collatz count.
 Cpair find_winner(collatz_t begin, collatz_t end);
 
+collatz_t find_winner2(collatz_t begin, collatz_t end);
+
 /// Output short report on range and winner.
 void report(std::ostream &outs, collatz_t range_first, collatz_t range_last, Cpair const &winner);
 

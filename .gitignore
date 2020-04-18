@@ -4,3 +4,4 @@ lib*.a
 lib*.so.*
 c++/collatz++
 .emacs*
+*.so
