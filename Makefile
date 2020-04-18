@@ -1,6 +1,6 @@
 #!/usr/bin/make
 
-SUBDIRS = c++
+SUBDIRS = c++ haskell
 
 .PHONY: subdirs $(SUBDIRS)
 

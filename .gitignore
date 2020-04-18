@@ -5,3 +5,5 @@ lib*.so.*
 c++/collatz++
 .emacs*
 *.so
+haskell/collatz
+haskell/collatz.hi
