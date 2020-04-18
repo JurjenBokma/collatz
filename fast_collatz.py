@@ -2,8 +2,11 @@
 
 from sys import argv
 import sys
+
+# Since the module is not on the ${PYTHONPATH}, we specify the relative path to it.
 sys.path.append('c++/collatz/')
 import collatzpp
+
 
 def spy_collatz(n):
     while True:

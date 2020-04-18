@@ -1,5 +1,6 @@
 #!/usr/bin/make
 
+# Mandatory options.
 CXXFLAGS += -Wall -Werror -std=c++2a -O3 -fPIC
 
 PYTHON_EXTENSION_SUFFIX = $(shell python3.7-config --extension-suffix)
@@ -18,6 +19,7 @@ PROGRAMS = $(CXX_PROGRAMS)
 STATIC_LIB = libcollatz.a
 DYNAMIC_LIB = libcollatz.so.1
 
+# FixMe: hardcoded path
 PYTHON_BINDING_LIB = collatz/collatzpp$(PES)
 
 SODIR = $(dir $(abspath $@))
@@ -39,6 +41,8 @@ $(DYNAMIC_LIB): $(CXX_LIB_OBJECTS)
 	$(CXX) $(CXXFLAGS) -shared -Wl,-soname,$@ -o $@ $(CXX_LIB_OBJECTS)
 	strip $@
 
+# This builds a Python module from the shared library. The rpath is to find the latter from the former.
+# NB The python script that uses this local module explictly states its (relative) path.
 $(PYTHON_BINDING_LIB):
 $(PYTHON_BINDING_LIB): CXXFLAGS += -O3 -Wall -Werror -shared -std=c++2a -fPIC $(shell python3 -m pybind11 --includes) -I /usr/include/python3.7 -I . -I collatz
 $(PYTHON_BINDING_LIB): LDFLAGS += -L. -lcollatz -Wl,-rpath,.
